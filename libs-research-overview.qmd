@@ -1,6 +1,6 @@
 ---
 pagetitle: "Laser-Induced Breakdown Spectroscopy: A Research Overview"
-date: 2024-11-01
+date: 2026-10-05
 date-format: "dddd, MMMM D, YYYY"
 lang: en
 format:
@@ -32,7 +32,7 @@ format:
           <script src="https://cdn.jsdelivr.net/npm/plotly.js-gl3d-dist-min@2.35.2/plotly-gl3d.min.js"></script>
 ---
 
-## [Research seminar]{.kicker} Laser-Induced Breakdown Spectroscopy {.hero .center background-color="#0b2545" background-gradient="radial-gradient(circle at 85% 10%, #1d4677 0%, #0b2545 48%, #071a33 100%)"}
+## [LBNL]{.kicker} Laser-Induced Breakdown Spectroscopy {.hero .center background-color="#0b2545" background-gradient="radial-gradient(circle at 85% 10%, #1d4677 0%, #0b2545 48%, #071a33 100%)"}
 
 ::: hero-sub
 A research overview: resonant excitation, high-pressure brines, and soils
@@ -62,7 +62,7 @@ Christian L. Goueguel, PhD
 ```{=html}
 <div class="career">
   <div class="career-row simple fragment fade-up">
-    <div class="what">Wavelength-selective LIBS (RELIBS, LIBS-LIF, resonant LIBS) for trace analysis in metal alloys</div>
+    <div class="what">Wavelength-selective LIBS (RELIBS, LA-LIF, RLA-LIF) for trace analysis in metal alloys</div>
     <div class="thread"><span class="tag accent">Part 1</span></div>
   </div>
   <div class="career-row simple fragment fade-up">
@@ -96,8 +96,8 @@ Christian L. Goueguel, PhD
     <div class="stat-label">journal cover articles</div><div class="stat-note">J. Anal. At. Spectrom.</div></div>
   <div class="stat"><div class="stat-value"><span class="countup" data-to="2">2</span></div>
     <div class="stat-label">book chapters on LIBS</div><div class="stat-note">Elsevier · Nova Science</div></div>
-  <div class="stat"><div class="stat-value">1<small>st</small></div>
-    <div class="stat-label">prize, LIBS Student Poster Award</div><div class="stat-note">for resonance-enhanced LIBS</div></div>
+  <!-- <div class="stat"><div class="stat-value">1<small>st</small></div> -->
+  <!--   <div class="stat-label">prize, LIBS Student Poster Award</div><div class="stat-note">for resonance-enhanced LIBS</div></div> -->
 </div>
 ```
 
