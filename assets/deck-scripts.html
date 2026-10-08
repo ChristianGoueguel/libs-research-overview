@@ -1,0 +1,46 @@
+<script>
+/* Count-up numbers: <span class="countup" data-to="0.7" data-decimals="1">0.7</span>
+   The final value is already in the markup, so PDF export and no-JS views stay correct. */
+(function () {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function run(el) {
+    const to = parseFloat(el.dataset.to);
+    const dec = parseInt(el.dataset.decimals || '0', 10);
+    const fmt = (v) => v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    if (reduce || isNaN(to)) { el.textContent = fmt(to); return; }
+    const t0 = performance.now(), dur = 1300;
+    (function tick(now) {
+      const t = Math.min(1, (now - t0) / dur);
+      el.textContent = fmt(to * (1 - Math.pow(1 - t, 3)));
+      if (t < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  function inHiddenFragment(el) {
+    const frag = el.closest('.fragment');
+    return frag && !frag.classList.contains('visible');
+  }
+
+  function onSlide(slide) {
+    if (!slide) return;
+    slide.querySelectorAll('.countup').forEach((el) => { if (!inHiddenFragment(el)) run(el); });
+  }
+
+  function init() {
+    Reveal.on('slidechanged', (e) => onSlide(e.currentSlide));
+    Reveal.on('fragmentshown', (e) => {
+      (e.fragments || [e.fragment]).forEach((f) => {
+        if (f.classList.contains('countup')) run(f);
+        f.querySelectorAll('.countup').forEach(run);
+      });
+    });
+    onSlide(Reveal.getCurrentSlide());
+  }
+
+  if (window.Reveal && Reveal.isReady && Reveal.isReady()) init();
+  else window.addEventListener('load', () => {
+    if (Reveal.isReady()) init(); else Reveal.on('ready', init);
+  });
+})();
+</script>

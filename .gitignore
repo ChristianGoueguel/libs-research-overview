@@ -1,0 +1,10 @@
+# OS / editors
+.DS_Store
+.Rhistory
+.Rproj.user/
+__pycache__/
+
+# Quarto / local tooling
+/.quarto/
+*_files/
+.claude/

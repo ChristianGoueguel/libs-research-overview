@@ -1,0 +1,473 @@
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+// Palette ------------------------------------------------------------------
+$navy:       #0b2545;
+$navy-2:     #13315c;
+$ink:        #1c2333;
+$muted:      #5c6577;
+$faint:      #8a93a3;
+$hairline:   #e2e6ed;
+$surface:    #f4f6fa;
+$accent:     #e8590c;   // plasma orange: rules, markers, large numerals
+$accent-ink: #c2410c;   // orange that passes AA as text on white
+$blue:       #2a78d6;
+
+// Quarto / reveal variables -------------------------------------------------
+$body-bg: #ffffff;
+$body-color: $ink;
+$link-color: $blue;
+$font-family-sans-serif: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: "IBM Plex Mono", Menlo, Consolas, monospace;
+$presentation-font-size-root: 28px;
+$presentation-line-height: 1.4;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-color: $navy;
+$presentation-heading-font-weight: 600;
+$presentation-heading-line-height: 1.15;
+$presentation-heading-letter-spacing: -0.01em;
+$presentation-heading-text-transform: none;
+$presentation-h1-font-size: 2.1em;
+$presentation-h2-font-size: 1.4em;
+$presentation-h3-font-size: 1.05em;
+$presentation-h4-font-size: 0.9em;
+$code-color: $accent-ink;
+$tabset-border-color: $hairline;
+
+/*-- scss:rules --*/
+
+:root {
+  --navy: #{$navy};
+  --ink: #{$ink};
+  --muted: #{$muted};
+  --faint: #{$faint};
+  --hairline: #{$hairline};
+  --surface: #{$surface};
+  --accent: #{$accent};
+  --accent-ink: #{$accent-ink};
+  --blue: #{$blue};
+  --spectral: linear-gradient(90deg, #7b2ff7 0%, #2a78d6 22%, #12b886 44%, #fab005 64%, #e8590c 82%, #e03131 100%);
+}
+
+.reveal { font-feature-settings: "kern", "liga"; }
+.reveal .slides { text-align: left; }
+.reveal strong { font-weight: 600; color: $navy; }
+.reveal em { color: inherit; }
+.reveal a { text-decoration: none; border-bottom: 1px solid rgba($blue, .35); }
+.reveal sub, .reveal sup { font-size: .65em; }
+
+// Slide titles: spectral underline ------------------------------------------
+.reveal .slides section > h2 {
+  margin-bottom: .55em;
+  &::after {
+    content: "";
+    display: block;
+    width: 84px;
+    height: 4px;
+    margin-top: .32em;
+    border-radius: 2px;
+    background: var(--spectral);
+  }
+}
+.reveal .kicker {
+  display: block;
+  margin-bottom: .45em;
+  font-size: .42em;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: $accent-ink;
+}
+
+// Body text & lists ----------------------------------------------------------
+.reveal p, .reveal li { color: $ink; }
+.reveal ul { list-style: none; margin-left: 0; padding-left: 1.05em; }
+.reveal ul li { position: relative; margin-bottom: .35em; }
+.reveal ul li::before {
+  content: "";
+  position: absolute;
+  left: -0.95em;
+  top: .58em;
+  width: .38em;
+  height: .38em;
+  border-radius: 2px;
+  background: $accent;
+}
+.reveal ul ul li::before { background: $faint; border-radius: 50%; width: .3em; height: .3em; }
+.reveal .small, .reveal .small p, .reveal .small li { font-size: .78em; }
+.reveal .muted { color: $muted; }
+.reveal .lead { font-size: 1.05em; color: $muted; font-weight: 300; line-height: 1.45; }
+.reveal .mono { font-family: $font-family-monospace; }
+.reveal .hl { color: $accent-ink; font-weight: 600; }
+.reveal .caption { font-size: .62em; color: $muted; line-height: 1.35; margin-top: .4em; }
+.reveal .source { font-size: .5em; color: $faint; position: absolute; bottom: -1.4em; left: 0; }
+
+// Callouts / cards -----------------------------------------------------------
+.reveal .takeaway {
+  border-left: 4px solid $accent;
+  background: $surface;
+  padding: .55em .9em;
+  border-radius: 0 8px 8px 0;
+  font-size: .82em;
+  margin-top: .6em;
+  p { margin: 0; }
+}
+.reveal .card {
+  background: #fff;
+  border: 1px solid $hairline;
+  border-radius: 12px;
+  padding: 1em 1.1em;
+  box-shadow: 0 1px 2px rgba(11, 37, 69, .04), 0 6px 18px rgba(11, 37, 69, .05);
+  h3 { margin: .15em 0 .4em; font-size: 1.02em; }
+  p { font-size: .8em; margin: .3em 0; line-height: 1.42; }
+}
+.reveal .card-grid {
+  display: grid;
+  gap: 18px;
+  &.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  &.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  &.cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+.reveal .card .num {
+  font-family: $font-family-monospace;
+  font-size: .58em;
+  font-weight: 600;
+  color: $accent-ink;
+  letter-spacing: .08em;
+}
+.reveal .card .where {
+  font-size: .6em;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  border-top: 1px solid $hairline;
+  padding-top: .6em;
+  margin-top: .9em;
+}
+.reveal .tag {
+  display: inline-block;
+  font-size: .56em;
+  font-weight: 600;
+  letter-spacing: .04em;
+  padding: .25em .75em;
+  border-radius: 999px;
+  margin: 0 .3em .45em 0;
+  background: $surface;
+  color: $navy;
+  border: 1px solid $hairline;
+}
+.reveal .tag.accent { background: rgba($accent, .1); color: $accent-ink; border-color: rgba($accent, .25); }
+
+// Stat tiles -----------------------------------------------------------------
+.reveal .stats { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+.reveal .stats.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.reveal .stats.compact .stat .stat-value { font-size: 2.05em; white-space: nowrap; }
+.reveal .stat {
+  border-top: 3px solid $navy;
+  padding: .7em .1em 0;
+  .stat-value {
+    font-size: 2.7em;
+    font-weight: 600;
+    line-height: 1;
+    color: $navy;
+    letter-spacing: -.02em;
+    small { font-size: .42em; font-weight: 500; color: $muted; letter-spacing: 0; margin-left: .15em; }
+  }
+  .stat-label { font-size: .78em; color: $ink; margin-top: .5em; line-height: 1.35; }
+  .stat-note { font-size: .64em; color: $muted; margin-top: .35em; }
+  &.accent { border-top-color: $accent; .stat-value { color: $accent-ink; } }
+}
+
+// Career timeline ------------------------------------------------------------
+.reveal .career { border-top: 1px solid $hairline; }
+.reveal .career-row {
+  display: grid;
+  grid-template-columns: 170px 1fr 150px;
+  gap: 24px;
+  align-items: center;
+  padding: .62em 0;
+  border-bottom: 1px solid $hairline;
+  .years { font-family: $font-family-monospace; font-size: .68em; font-weight: 600; color: $accent-ink; line-height: 1.35; }
+  .role { font-size: .84em; font-weight: 600; color: $navy; line-height: 1.25; }
+  .org { font-weight: 400; color: $muted; }
+  .what { font-size: .68em; color: $ink; margin-top: .2em; line-height: 1.38; }
+  .thread { text-align: right; }
+}
+
+.reveal .career-row.simple {
+  grid-template-columns: 1fr 150px;
+  padding: .85em 0;
+  .what { font-size: .9em; margin: 0; line-height: 1.35; }
+}
+
+// Tables ---------------------------------------------------------------------
+.reveal table.data {
+  border-collapse: collapse;
+  font-size: .6em;
+  font-variant-numeric: tabular-nums;
+  margin: 0 auto;
+  th, td { padding: .32em .75em; border: none; }
+  thead th { font-weight: 600; color: $navy; border-bottom: 1.5px solid $navy; text-align: right; }
+  thead th:first-child { text-align: left; }
+  thead tr.group th { border-bottom: 1px solid $hairline; text-align: center; color: $muted; font-weight: 500; }
+  tbody td { text-align: right; border-bottom: 1px solid $hairline; }
+  tbody td:first-child { text-align: left; font-weight: 600; color: $navy; }
+  tbody tr.emph td { background: rgba($accent, .06); }
+  td.best { font-weight: 600; color: $accent-ink; }
+  td.sep, th.sep { border-left: 1px solid $hairline; }
+}
+
+// Figures --------------------------------------------------------------------
+.reveal img { border-radius: 4px; }
+.reveal .slides section p:has(> img:only-child) { text-align: center; margin: .15em 0 .25em; }
+@each $h in 330, 360, 400, 420, 440, 470 {
+  .reveal img.fh-#{$h} { max-height: #{$h}px; width: auto; max-width: 100%; }
+}
+.reveal .side { font-size: .9em; }
+.reveal .side li, .reveal .side p { font-size: 1em; }
+.reveal .side ul ul li { font-size: .92em; }
+.reveal .fig-frame {
+  background: #fff;
+  border: 1px solid $hairline;
+  border-radius: 10px;
+  padding: 10px;
+}
+.reveal .panel-tabset img { max-height: 390px; width: auto; max-width: 100%; display: block; margin: 0 auto; }
+.reveal .panel-tabset .column img { max-height: 420px; }
+.reveal .center-img img, .reveal .center-img p { text-align: center; margin-left: auto; margin-right: auto; display: block; }
+
+// Tabsets --------------------------------------------------------------------
+.reveal .panel-tabset {
+  [role="tablist"] { border-bottom: 1px solid $hairline; margin-bottom: .5em; padding-left: 0; }
+  [role="tablist"] li::before, ul.panel-tabset-tabby li::before { display: none; }
+  .nav-link, [role="tab"] { font-size: .58em; font-weight: 500; color: $muted; padding: .3em .9em; }
+  .nav-link.active, [role="tab"][aria-selected="true"] { color: $navy; font-weight: 600; border-bottom: 3px solid $accent; }
+}
+
+// Method map (2x2) -----------------------------------------------------------
+.reveal .method-map {
+  display: grid;
+  grid-template-columns: 290px 1fr 1fr;
+  gap: 16px;
+  font-size: .86em;
+  .hdr { font-weight: 600; color: $muted; font-size: .82em; text-transform: uppercase; letter-spacing: .08em; align-self: end; }
+  .rowh { font-weight: 600; color: $navy; align-self: center; line-height: 1.25; small { display: block; font-weight: 400; color: $muted; font-size: .78em; } }
+  .cell { border: 1px solid $hairline; border-radius: 10px; padding: .8em 1em; background: #fff; min-height: 4.2em; }
+  .cell b { color: $navy; font-size: 1.05em; }
+  .cell span { display: block; color: $muted; font-size: .82em; margin-top: .15em; }
+  .cell.on { border-color: rgba($accent, .55); box-shadow: inset 4px 0 0 $accent; }
+  .cell.off { background: $surface; color: $faint; display: flex; align-items: center; }
+}
+
+// Flow diagram ---------------------------------------------------------------
+.reveal .flow {
+  display: grid;
+  grid-template-columns: 1fr 34px 1fr 34px 1fr 34px 1fr;
+  align-items: stretch;
+  margin-top: .4em;
+  .step {
+    background: $surface;
+    border-radius: 10px;
+    padding: .8em .9em;
+    font-size: .7em;
+    line-height: 1.38;
+    b { display: block; color: $navy; font-size: 1.08em; margin-bottom: .2em; }
+    &.final { background: $navy; color: #fff; b { color: #fff; } }
+  }
+  .arrow { align-self: center; text-align: center; color: $accent; font-size: .9em; }
+}
+
+// Section dividers -----------------------------------------------------------
+.reveal .slides section.section-divider {
+  h1 { color: #fff; font-size: 1.9em; margin: .1em 0 .35em; max-width: 85%; }
+  h1::after { display: none; }
+  .sec-num {
+    display: block;
+    margin-bottom: .55em;
+    font-family: $font-family-monospace;
+    font-size: .32em;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: $accent;
+  }
+  .sec-big {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: $font-family-monospace;
+    font-size: 9em;
+    font-weight: 600;
+    line-height: 1;
+    pointer-events: none;
+    &, p { color: rgba(255, 255, 255, .07) !important; margin: 0; }
+  }
+  .sec-rule { width: 160px; height: 4px; border-radius: 2px; background: var(--spectral); margin: .2em 0 .9em; }
+  .sec-meta { color: rgba(255, 255, 255, .72); font-size: .72em; letter-spacing: .02em; }
+  .sec-question { color: rgba(255, 255, 255, .92); font-size: .9em; font-weight: 300; margin-top: 1.1em; max-width: 66%; line-height: 1.4; }
+}
+
+// Title (hero) slide ----------------------------------------------------------
+.reveal .slides section.hero {
+  h2 {
+    color: #fff;
+    font-size: 2.15em;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    margin-bottom: .2em;
+    &::after { display: none; }
+  }
+  .kicker { color: $accent; font-size: .3em; margin-bottom: 1.1em; }
+  .hero-sub { color: rgba(255, 255, 255, .82); font-size: .95em; font-weight: 300; margin: 0 0 1em; }
+  .hero-author { color: #fff; font-size: .82em; font-weight: 600; margin: 1.2em 0 .1em; }
+  .hero-meta { color: rgba(255, 255, 255, .62); font-size: .6em; letter-spacing: .03em; }
+  p, li { color: rgba(255, 255, 255, .85); }
+}
+
+// Dark-background slides: text colours ----------------------------------------
+.reveal .slides section.has-dark-background,
+.reveal .slides section.has-dark-background p,
+.reveal .slides section.has-dark-background li { color: rgba(255, 255, 255, .88); }
+.reveal .slides section.has-dark-background h1,
+.reveal .slides section.has-dark-background h2,
+.reveal .slides section.has-dark-background strong { color: #fff; }
+.reveal .slides section.has-dark-background a { color: #9ec5f4; border-bottom-color: rgba(158, 197, 244, .4); }
+.reveal.has-dark-background .footer, .reveal.has-dark-background .slide-number { color: rgba(255, 255, 255, .55) !important; }
+
+// Spectrum barcode -------------------------------------------------------------
+.reveal svg.spectrum { width: 100%; height: auto; display: block; margin: .3em 0 .2em; overflow: visible; }
+.spectrum-base { stroke: rgba(255, 255, 255, .25); stroke-width: 1; }
+.spectrum-line { stroke-width: 3; stroke-linecap: round; transform-box: fill-box; transform-origin: 50% 100%; }
+.spectrum-label { fill: rgba(255, 255, 255, .55); font-family: $font-family-monospace; font-size: 13px; }
+
+// Charts (inline SVG) ------------------------------------------------------------
+.reveal svg.viz { width: 100%; height: auto; display: block; overflow: visible; font-family: $font-family-sans-serif; }
+.reveal svg.viz-lod { max-height: 375px; width: auto; max-width: 100%; margin: 0 auto; }
+.viz .grid { stroke: #e1e0d9; stroke-width: 1; }
+.viz .grid-minor { stroke: #efeee9; }
+.viz .axis { stroke: #c3c2b7; stroke-width: 1; }
+.viz .row-rule { stroke: #efeee9; stroke-width: 1; }
+.viz .tick { fill: #6b6a65; font-size: 16px; font-variant-numeric: tabular-nums; }
+.viz .axis-title { fill: $muted; font-size: 16px; }
+.viz .row-label { fill: $navy; font-size: 22px; font-weight: 600; }
+.viz .row-sub { fill: $muted; font-size: 15px; }
+.viz .value { fill: $ink; font-size: 18px; font-weight: 600; }
+.viz .ratio { fill: $accent-ink; font-size: 16px; font-weight: 600; }
+.viz .range { fill: $muted; font-size: 16px; font-variant-numeric: tabular-nums; }
+.viz .col-head { fill: $faint; font-size: 13px; text-transform: uppercase; letter-spacing: .1em; }
+.viz .legend, .viz .legend-title { fill: $ink; font-size: 16px; }
+.viz .legend-title { fill: $muted; }
+.viz .dot { stroke: #fff; stroke-width: 2; }
+.viz .dot-ref { fill: #8a8f99; }
+.viz .dot-hi { fill: $blue; }
+.viz .ghost { fill: none; stroke: #b9bec8; stroke-width: 1.5; }
+.viz .connector { stroke: rgba($blue, .45); stroke-width: 3; stroke-linecap: round; }
+.viz .err { stroke-width: 1.5; }
+.viz .p0 { fill: #86b6ef; }  .viz .p0-stroke { stroke: #86b6ef; }
+.viz .p1 { fill: #2a78d6; }  .viz .p1-stroke { stroke: #2a78d6; }
+.viz .p2 { fill: #104281; }  .viz .p2-stroke { stroke: #104281; }
+
+// Soil-texture ML charts
+.viz .panel-title { fill: $navy; font-size: 19px; font-weight: 600; }
+.viz .panel-sub { fill: $muted; font-size: 14px; }
+.viz .callout { fill: $ink; font-size: 15px; font-weight: 600; }
+.viz .annot { fill: $muted; font-size: 14px; }
+.viz .annot-strong { fill: $ink; font-weight: 600; }
+.viz .line-pls { fill: none; stroke: #2a78d6; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.viz .line-enet { fill: none; stroke: #eb6834; stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.viz .line-faint { fill: none; stroke: #d3d7de; stroke-width: 1.5; }
+.viz .band-pls { fill: rgba(42, 120, 214, .14); stroke: none; }
+.viz .band-enet { fill: rgba(235, 104, 52, .13); stroke: none; }
+.viz .pt-pls { fill: #2a78d6; stroke: #fff; stroke-width: 1.5; }
+.viz .pt-enet { fill: #eb6834; stroke: #fff; stroke-width: 1.5; }
+.viz .pt-pls-sm { fill: #2a78d6; }
+.viz .pt-light { fill-opacity: .7; }
+.viz .ref-line { stroke: #9aa1ad; stroke-width: 1.2; }
+.viz .mean-bar { stroke: $ink; stroke-width: 3; stroke-linecap: round; }
+.viz .line-vip { fill: none; stroke: #2a78d6; stroke-width: 1.4; stroke-linejoin: round; }
+.viz .vip-one { stroke: $accent; stroke-width: 1.2; }
+.viz .spec-area { fill: #c9ced8; stroke: none; }
+.viz .leader { stroke: $muted; stroke-width: 1; }
+.reveal svg.viz-soil { max-height: 400px; width: auto; max-width: 100%; margin: 0 auto; }
+.reveal svg.viz-vip { max-height: 370px; width: auto; max-width: 100%; margin: 0 auto; }
+
+// Elastic-net 3D surface
+.reveal .enet3d { display: grid; grid-template-columns: 1fr 250px; gap: 20px; align-items: start; }
+.reveal .enet3d-plot { width: 100%; height: 375px; }
+.reveal .enet3d-controls {
+  display: flex; gap: 8px; align-items: center; margin-bottom: 4px;
+  button {
+    font: 600 .5em $font-family-sans-serif; color: $muted; background: #fff; cursor: pointer;
+    border: 1px solid $hairline; border-radius: 999px; padding: .3em 1em;
+    &.on { color: #fff; background: $navy; border-color: $navy; }
+  }
+}
+.reveal .enet3d-hint { font-size: .45em; color: $faint; margin-left: auto; }
+.reveal .enet3d-side { padding-top: 2.2em; }
+.reveal .enet3d-info {
+  .kicker { font-size: .5em; }
+  .enet3d-stat { font-size: .72em; color: $ink; margin-top: .55em; b { color: $navy; } }
+  .enet3d-note { font-size: .52em; color: $muted; line-height: 1.35; margin-top: .15em; }
+}
+
+// Equations (no math engine needed: works offline)
+.reveal .eq {
+  font-family: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  font-size: .74em;
+  color: $navy;
+  background: $surface;
+  white-space: nowrap;
+  border-radius: 8px;
+  padding: .45em .7em;
+  margin: .45em 0 .55em;
+  text-align: center;
+  i { font-style: italic; }
+  .op { font-family: $font-family-sans-serif; font-size: .82em; color: $muted; }
+}
+.reveal .learner {
+  h3 { margin: 0 0 .1em; font-size: 1.05em; }
+  .motto { font-size: .72em; color: $accent-ink; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  ul { margin-top: .3em; }
+  li { font-size: .72em; margin-bottom: .25em; }
+  .picked { font-size: .7em; border-top: 1px solid $hairline; padding-top: .5em; margin-top: .5em; color: $ink; }
+}
+.reveal .fact-strip {
+  display: flex; gap: 28px; justify-content: center; margin: -.1em 0 .7em;
+  div { font-size: .68em; color: $muted; }
+  b { font-size: 1.5em; color: $navy; font-weight: 600; margin-right: .25em; }
+}
+
+// Slide-entry animations (replay each time a slide becomes current) ---------------
+@keyframes pop   { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: none; } }
+@keyframes fade  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise  { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes slideX { from { transform: translateX(var(--dx)); } to { transform: none; } }
+@keyframes draw  { from { stroke-dashoffset: var(--len); } to { stroke-dashoffset: 0; } }
+@keyframes grow  { from { transform: scaleY(0); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.viz .anim-pop { transform-box: fill-box; transform-origin: center; }
+.reveal .slides section.present {
+  .anim-pop   { animation: pop .55s cubic-bezier(.2, .9, .3, 1.3) var(--d, 0s) both; }
+  .anim-fade  { animation: fade .6s ease var(--d, 0s) both; }
+  .anim-rise  { animation: rise .7s ease var(--d, 0s) both; }
+  .anim-slide { animation: slideX 1.1s cubic-bezier(.2, .8, .2, 1) var(--d, 0s) both; }
+  .anim-draw  { stroke-dasharray: var(--len); animation: draw 1.1s cubic-bezier(.2, .8, .2, 1) var(--d, 0s) both; }
+  .spectrum-line { animation: grow .7s cubic-bezier(.2, .8, .2, 1) var(--d, 0s) both; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal .slides section.present * { animation: none !important; }
+}
+html.reveal-print .reveal .slides section * , html.print-pdf .reveal .slides section * { animation: none !important; }
+
+// Chrome -----------------------------------------------------------------------
+.reveal .footer { font-size: .42em !important; color: $faint !important; letter-spacing: .03em; }
+.reveal .slide-number { font-family: $font-family-monospace; font-size: .42em !important; color: $faint !important; background: transparent !important; }
+.reveal .progress { height: 4px; color: $accent; }
+.reveal .progress span { background: var(--spectral); }
+
+// References -------------------------------------------------------------------
+.reveal .arrow-col { text-align: center; padding-top: 3.2em; color: $accent; font-size: 1.4em; }
+.reveal .refs { font-size: .66em; }
+.reveal .refs p { margin: 0 0 .75em; padding-left: 1.6em; text-indent: -1.6em; line-height: 1.4; }
+.reveal .refs .doi { font-family: $font-family-monospace; font-size: .88em; }
