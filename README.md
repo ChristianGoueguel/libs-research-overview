@@ -2,6 +2,8 @@
 
 Research seminar on laser-induced breakdown spectroscopy (LIBS) by Christian L. Goueguel, built with [Quarto](https://quarto.org) and reveal.js.
 
+**View the slides:** https://christiangoueguel.github.io/libs-research-overview/
+
 **Contents**
 
 1. **Wavelength-selective excitation**: resonance-enhanced LIBS (RELIBS), resonant laser-ablation LIF (RLA-LIF) and laser-ablation LIF (LA-LIF) for trace analysis in alloys.
