@@ -2,7 +2,7 @@
 
 Research seminar on laser-induced breakdown spectroscopy (LIBS) by Christian L. Goueguel, built with [Quarto](https://quarto.org) and reveal.js.
 
-**View the slides:** https://christiangoueguel.github.io/libs-research-overview/
+**View the slides:** https://christiangoueguel.com/libs-research-overview/
 
 **Contents**
 
